@@ -1,0 +1,220 @@
+body {
+  margin: 0;
+  font-size: 1em;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 700;
+  line-height: 26.4px;
+  font-family: Arial, sans-serif;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 3.3em;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #8686ac;
+}
+
+.active {
+  background-color: #6699ff;
+}
+
+.plus-button {
+  background-color: #6699ff;
+  border: none;
+  color: white;
+  padding-bottom: 5px;
+  padding-top: 6px;
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: center;
+  height: 25px;
+  width: 15px;
+  font-size: 1.5em;
+  margin: 10px 10px;
+  border-radius: 50%;
+}
+
+#main-body {
+  padding: 20px;
+  margin-top: 30px;
+  background-color: #d1d1e0;
+  height: 1500px;
+}
+
+h1 {
+  text-align: center;
+  font-family: Tahoma, Arial, sans-serif;
+  color: #6699ff;
+  margin: 80px 0;
+}
+
+.button {
+  padding: 10px;
+  color: #fff;
+  border: 2px solid #06D85F;
+  border-radius: 20px/50px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+
+.plus-button:hover {
+  background: #06D85F;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup2 {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 68%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.window-photo {
+  height: 35em;
+  border-radius: 2%;
+  margin-bottom: 30px;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+
+.popup .close:hover {
+  color: #06D85F;
+}
+
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+@media screen and (max-width: 700px) {
+  .box {
+    width: 70%;
+  }
+
+  .popup {
+    width: 70%;
+  }
+}
+
+.card-holder {}
+
+.photo-card {
+  border-radius: 10%;
+  margin: 1em;
+  display: inline-grid;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 200px;
+  width: 300px;
+  background-size: cover;
+  background-position: 50% 50%;
+  border: 1px #333;
+}
+
+.tag-button {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #6699ff;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 15px;
+  margin-bottom: 10px;
+  width: auto;
+  height: 22px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.tag-button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.tag-button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.tag-button:hover span {
+  padding-right: 25px;
+}
+
+.tag-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
