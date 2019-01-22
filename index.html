@@ -3,7 +3,6 @@
 
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="index.css">
   <title>PICHA</title>
   <script defer type="text/javascript" src="key.js"></script>
   <script defer type="text/javascript" src="src/index.js"></script>
@@ -13,50 +12,14 @@
 <center>
 
   <body>
-    <ul>
-      <li><a class="active" href="#home">Home</a></li>
-      <li><a href="#">Notifications</a></li>
-      <li><a href="#">Albums</a></li>
-      <li><a href="#">Tags</a></li>
-      <li style="float:right">
-        <a class="plus-button" href="#popup1">+</a>
-      </li>
-      <div id="popup1" class="overlay">
-        <div class="popup">
-          <h2>Add a Photo</h2>
-          <a class="close" href="#">&times;</a>
-          <div class="content">
-            <form id="add-photo-form">
-              <input required id="title" type="text" name="title" value="" placeholder="Title" class="input-text"><br>
-              <input required id="url" type="text" name="url" value="" placeholder="Picha URL" class="input-text"><br>
-              <input type="submit" name="submit" value="Add" class="submit">
-            </form>
+    <h1>PICHA</h1>
+    <h3>Add a Photo</h3>
+    <form id="add-photo-form">
+      <input required id="title" type="text" name="title" value="" placeholder="Title" class="input-text"><br>
+      <input required id="url" type="text" name="url" value="" placeholder="Picha URL" class="input-text"><br>
+      <input type="submit" name="submit" value="Add" class="submit">
+    </form>
 
-          </div>
-        </div>
-      </div>
-    </ul>
-
-    <div id='main-body'>
-      <h1>Photo Library</h1>
-      <div id="popup2" class="overlay">
-        <div class="popup2">
-          <a class="close" href="#">&times;</a>
-          <div class="content">
-            <img class="window-photo" src="http://dreamicus.com/data/image/image-06.jpg"></div>
-          <div class="tags-container"><button class="tag-button" style="vertical-align:middle"><span>Landscape</span></button></div>
-        </div>
-      </div>
-
-      <div class="card-holder">
-        <a href="#popup2"><img class="photo-card" src="http://dreamicus.com/data/image/image-06.jpg"></a>
-        <a href="#popup2"><img class="photo-card" src="http://dreamicus.com/data/image/image-06.jpg"></a>
-        <a href="#popup2"><img class="photo-card" src="http://dreamicus.com/data/image/image-06.jpg"></a>
-      </div>
-
-
-
-    </div>
   </body>
 </center>
 
