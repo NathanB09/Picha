@@ -1,7 +1,5 @@
 const baseURL = 'http://localhost:3000'
 
-const apiKey = ''
-
 function getLabels(url) {
   fetch(`https://vision.googleapis.com/v1/images:annotate?key=${apiKey}`, {
       method: 'POST',
@@ -26,15 +24,14 @@ function getLabels(url) {
 }
 
 function savePicha() {
-  fetch(baseURL + '/pichas', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-
+  return fetch(baseURL + '/pichas', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(newPhoto)
     })
-  })
+    .then(resp => resp.json())
 }
 
 function saveTag() {
