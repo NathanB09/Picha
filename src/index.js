@@ -3,10 +3,20 @@ const titleInput = document.querySelector('#title')
 const urlInput = document.querySelector('#url')
 const cardHold = document.querySelector('.card-holder')
 const tagsContainer = document.querySelector('.tags-container')
+const searchForm = document.querySelector('#tag-search')
+const searchInput = document.querySelector('#search-item')
+const homeTab = document.querySelector('#home-tab')
+const tagTab = document.querySelector('#tag-tab')
 
 const state = {
   pichas: []
 }
+
+// initial page load of pre-existing photos
+getPhotos().then(data => {
+  state.pichas = data
+  renderPhotos(state.pichas)
+})
 
 // renders a single photo
 function renderPhoto(photo) {
@@ -38,6 +48,13 @@ function renderTags(id) {
       tagBtn.className = 'tag-button'
       tagSpan.innerText = tag.description
 
+      // renders the images for the clicked tag
+      tagBtn.addEventListener('click', event => {
+        event.preventDefault()
+        cardHold.innerHTML = ''
+        renderPhotos(filtered(tag.description))
+      })
+
       tagBtn.append(tagSpan)
       tagsContainer.append(tagBtn)
     })
@@ -47,12 +64,6 @@ function renderTags(id) {
 function renderPhotos(photos) {
   photos.forEach(photo => renderPhoto(photo))
 }
-
-// initial page load of pre-existing photos
-getPhotos().then(data => {
-  state.pichas = data
-  renderPhotos(state.pichas)
-})
 
 // updates page with new data
 function updatePage() {
@@ -90,3 +101,59 @@ function createTags(photo) {
     })
   })
 }
+
+// filters images by search input
+searchForm.addEventListener('submit', event => {
+  event.preventDefault()
+
+  if (filtered(searchInput.value).length > 0) {
+    cardHold.innerHTML = ''
+    renderPhotos(filtered(searchInput.value))
+  } else {
+    cardHold.innerText = "No Images Found"
+  }
+
+  searchForm.reset()
+})
+
+function filtered(value) {
+  return state.pichas.filter(photo => {
+    return !!photo.tags.find(tag => {
+      return tag.description.toLowerCase() === value.toLowerCase()
+    })
+  })
+}
+
+// renders home page showing all pics
+homeTab.addEventListener('click', event => {
+  event.preventDefault()
+  updatePage()
+})
+
+// renders all tags
+tagTab.addEventListener('click', event => {
+  event.preventDefault()
+
+  cardHold.innerHTML = ''
+
+  state.pichas.forEach(photo => {
+    photo.tags.forEach(tag => {
+      const tagBtn = document.createElement('button')
+      const tagSpan = document.createElement('span')
+
+      tagBtn.className = 'tag-button'
+      tagSpan.innerText = tag.description
+
+      // renders the images for the clicked tag
+      tagBtn.addEventListener('click', event => {
+        event.preventDefault()
+        cardHold.innerHTML = ''
+        renderPhotos(filtered(tag.description))
+      })
+
+      tagBtn.append(tagSpan)
+      cardHold.append(tagBtn)
+    })
+  })
+
+})

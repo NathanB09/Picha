@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="index.css">
   <title>PICHA</title>
   <script defer type="text/javascript" src="key.js"></script>
@@ -14,12 +15,18 @@
 
   <body>
     <ul>
-      <li><a class="active" href="#home">Home</a></li>
-      <li><a href="#">Notifications</a></li>
-      <li><a href="#">Albums</a></li>
-      <li><a href="#">Tags</a></li>
+      <li id='home-tab'><a class="active" href="#home">Home</a></li>
+      <!-- <li><a href="#">Notifications</a></li>
+      <li><a href="#">Albums</a></li> -->
+      <li id='tag-tab'><a href="#">Tags</a></li>
       <li style="float:right">
         <a class="plus-button" href="#popup1">+</a>
+      </li>
+      <li id='search-container'>
+        <form id="tag-search" class="">
+          <input id="search-item" type="text" name="search" placeholder="Search">
+          <button type="submit"><i class="fa fa-search"></i></button>
+        </form>
       </li>
       <div id="popup1" class="overlay">
         <div class="popup">
@@ -38,10 +45,11 @@
     </ul>
 
     <div id='main-body'>
-      <h1>Photo Library</h1>
+      <!-- <h1>Photo Library</h1> -->
+      <img class="logo" src="lib/logo.png" alt="">
       <div id="popup2" class="overlay">
         <div class="popup2">
-          <a class="close" href="#">&times;</a>
+          <a class="close2" href="#">&times;</a>
           <div class="content">
             <img class="window-photo">
           </div>
