@@ -116,15 +116,24 @@ h1 {
   padding: 20px;
   background: #fff;
   border-radius: 5px;
-  width: 68%;
+  width: 60%;
   position: relative;
 }
 
+.popup2 .content {
+  margin: 20px 10px;
+  overflow: hidden;
+  position: relative;
+  height: 500px;
+}
+
 .window-photo {
-  height: 35em;
-  width: 60em;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 5px;
-  margin-bottom: 30px;
 }
 
 .popup h2 {
@@ -191,6 +200,11 @@ h1 {
   background-size: cover;
   background-position: 50% 50%;
   border: 1px #333;
+  box-shadow: 0 6px 12px 2px rgba(0, 0, 0, 0.4);
+}
+
+.photo-card:hover {
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.4);
 }
 
 .tag-button {
