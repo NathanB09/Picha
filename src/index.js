@@ -8,9 +8,15 @@ const searchInput = document.querySelector('#search-item')
 const homeTab = document.querySelector('#home-tab')
 const tagTab = document.querySelector('#tag-tab')
 const close2 = document.querySelector('.close2')
+const windowPic = document.querySelector('.window-photo')
+const closeComments = document.querySelector('.close-comment-window')
+const commentUl = document.querySelector(".comment-list")
+const commentForm = document.querySelector('#comment-form')
+const commentInput = document.querySelector("#comment-content")
 
 const state = {
-  pichas: []
+  pichas: [],
+  currentPichaId: 0
 }
 
 // initial page load of pre-existing photos
@@ -33,12 +39,33 @@ function renderPhoto(photo) {
   cardHold.append(aTag)
 
   aTag.addEventListener('click', () => {
-    const windowPic = document.querySelector('.window-photo')
+    state.currentPichaId = photo.id
     windowPic.src = photo.url
     tagsContainer.innerHTML = ''
     renderTags(photo.id)
   })
 }
+
+function renderComment(comment) {
+  const commentLi = document.createElement('li')
+  const commentP = document.createElement('p')
+  commentP.className = 'comment-p'
+  commentP.innerText = comment.content
+  commentLi.append(commentP)
+  commentUl.append(commentLi)
+}
+
+function toggleComments() {
+  windowPic.parentNode.querySelector('.comment-window').classList.toggle("visible")
+  console.log(state.currentPichaId)
+  commentUl.innerHTML = ""
+  getPhotoById(state.currentPichaId).then(json => {
+    json.comments.forEach(comment => renderComment(comment))
+  })
+}
+
+windowPic.addEventListener('click', toggleComments)
+closeComments.addEventListener('click', toggleComments)
 
 // renders the photos tags
 function renderTags(id) {
@@ -160,4 +187,22 @@ tagTab.addEventListener('click', event => {
     })
   })
 
+})
+
+commentForm.addEventListener('submit', event => {
+  event.preventDefault()
+  const newComment = {
+    picha_id: state.currentPichaId,
+    content: commentInput.value
+  }
+  saveComment(newComment)
+  renderComment(newComment)
+  commentForm.reset()
+})
+
+close2.addEventListener('click', () => {
+  if (windowPic.parentNode.querySelector('.comment-window').classList.value.includes('visible')) {
+    toggleComments()
+  }
+  window.location.href = '#'
 })

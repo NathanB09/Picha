@@ -14,18 +14,13 @@
 <center>
 
   <body>
-    <ul>
-      <li id='home-tab'><a class="active" href="#home">Home</a></li>
-      <!-- <li><a href="#">Notifications</a></li>
-      <li><a href="#">Albums</a></li> -->
-      <li id='tag-tab'><a href="#">Tags</a></li>
-      <li style="float:right">
-        <a class="plus-button" href="#popup1">+</a>
-      </li>
-      <li id='search-container'>
+    <ul class="nav-ul">
+      <li id='home-tab'><a href="#home"><i class="fa fa-camera"></i> Home</a></li>
+      <li id='tag-tab'><a href="#"><i class="fa fa-tag"></i> Tags</a></li>
+      <li id='search-container' class='form-input'>
         <form id="tag-search" class="">
           <input id="search-item" type="text" name="search" placeholder="Search">
-          <button type="submit"><i class="fa fa-search"></i></button>
+          <button style="float: right" type="submit"><i class="fa fa-search"></i></button>
         </form>
       </li>
       <div id="popup1" class="overlay">
@@ -46,12 +41,23 @@
 
     <div id='main-body'>
       <!-- <h1>Photo Library</h1> -->
-      <img class="logo" src="lib/logo.png" alt="">
+      <a href="#popup1">
+        <div class="logo"></div>
+      </a>
       <div id="popup2" class="overlay">
         <div class="popup2">
-          <a class="close2" href="#">&times;</a>
+          <a class="close2">&times;</a>
           <div class="content">
             <img class="window-photo">
+            <div class="comment-window">
+              <button class="close-comment-window">Back</button>
+              <ul class="comment-list">
+              </ul>
+              <form id="comment-form" class='form-input'>
+                <input id="comment-content" type="text" name="content" placeholder="Your comment...">
+                <button type="submit"><i class="fa fa-plus-square"></i></button>
+              </form>
+            </div>
           </div>
           <div class="tags-container">
             <!-- <button class="tag-button" style="vertical-align:middle">

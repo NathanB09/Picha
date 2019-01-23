@@ -65,14 +65,18 @@ function saveTag(tag) {
     .then(resp => resp.json())
 }
 
-function saveComment() {
-  fetch(baseURL + '/comments', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-
+function saveComment(comment) {
+  return fetch(baseURL + '/comments', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(comment)
     })
-  })
+    .then(resp => resp.json())
+}
+
+function getPhotoById(id) {
+  return fetch(baseURL + `/pichas/${id}`)
+    .then(res => res.json())
 }
