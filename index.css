@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+
 body {
   margin: 0;
   font-size: 1em;
@@ -8,7 +10,7 @@ body {
   font-family: Arial, sans-serif;
 }
 
-ul {
+ul.nav-ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -22,6 +24,7 @@ ul {
 
 li {
   float: left;
+  list-style-type: none;
 }
 
 li a {
@@ -40,22 +43,6 @@ li a:hover:not(.active) {
   background-color: #00c9ff;
 }
 
-.plus-button {
-  background-color: #00c9ff;
-  border: none;
-  color: white;
-  padding-bottom: 5px;
-  padding-top: 6px;
-  padding-left: 10px;
-  padding-right: 10px;
-  text-align: center;
-  height: 25px;
-  width: 15px;
-  font-size: 1.5em;
-  margin: 8px 10px;
-  border-radius: 50%;
-}
-
 #main-body {
   padding: 20px;
   margin-top: 30px;
@@ -68,20 +55,6 @@ h1 {
   font-family: Tahoma, Arial, sans-serif;
   color: #00c9ff;
   margin: 80px 0;
-}
-
-.button {
-  padding: 10px;
-  color: #fff;
-  border: 2px solid #06D85F;
-  border-radius: 20px/50px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: all 0.3s ease-out;
-}
-
-.plus-button:hover {
-  background: #06D85F;
 }
 
 .overlay {
@@ -103,12 +76,22 @@ h1 {
 
 .popup {
   margin: 70px auto;
-  padding: 20px;
+  padding: 30px;
   background: #fff;
   border-radius: 5px;
-  width: 30%;
+  width: 20%;
   position: relative;
-  transition: all 5s ease-in-out;
+}
+
+#add-photo-form input {
+  border-radius: 5px;
+  height: 20px;
+  width: 150px;
+}
+
+#add-photo-form input[type=submit] {
+  background: #00c9ff;
+  color: #fff;
 }
 
 .popup2 {
@@ -124,15 +107,16 @@ h1 {
   margin: 20px 10px;
   overflow: hidden;
   position: relative;
-  height: 500px;
+  /* height: 500px; */
+  max-height: 70vh;
 }
 
 .window-photo {
-  height: 100%;
-  position: absolute;
-  top: 50%;
+  width: 100%;
+  position: relative;
+  /* top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%); */
   border-radius: 5px;
 }
 
@@ -161,6 +145,7 @@ h1 {
   font-weight: bold;
   text-decoration: none;
   color: #333;
+  cursor: pointer;
 }
 
 .close:hover {
@@ -250,15 +235,25 @@ h1 {
 }
 
 .logo {
+  height: 76px;
+  width: 208px;
   margin-top: 30px;
   margin-bottom: 10px;
+  border-radius: 20px;
+  box-shadow: 0 6px 12px 2px rgba(0, 0, 0, 0.4);
+  background: url('lib/logo.png') no-repeat;
+}
+
+.logo:hover {
+  background: url('lib/logo-plus.png') no-repeat;
+  box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.4);
 }
 
 #search-container {
   float: right;
 }
 
-#search-container input[type=text] {
+.form-input input[type=text] {
   padding: 6px;
   margin-top: 10px;
   font-size: 17px;
@@ -267,8 +262,7 @@ h1 {
   border-radius: 2px;
 }
 
-#search-container button {
-  float: right;
+.form-input button {
   padding: 6px 10px;
   margin-top: 10px;
   margin-right: 16px;
@@ -278,9 +272,59 @@ h1 {
   cursor: pointer;
   outline: none;
   border-radius: 2px;
-  color: white;
+  color: #fff;
 }
 
-#search-container button:hover {
+.form-input button:hover {
   background: #8686ac;
+}
+
+.comment-window {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+  background: rgba(255, 255, 255, 0);
+  transition: .2s;
+  border-radius: 50%;
+}
+
+.comment-window.visible {
+  top: 0;
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.close-comment-window {
+  cursor: pointer;
+  background: #00c9ff;
+  border-radius: 5px;
+  padding: 2px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  color: #fff;
+  outline: none;
+}
+
+.comment-list {
+  overflow: scroll;
+}
+
+.comment-p {
+  background: rgba(0, 201, 255, 0.40);
+  padding: 5px;
+  border-radius: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  text-align: left;
+}
+
+#comment-form {
+  position: absolute;
+  bottom: 5%;
+  left: 33%;
 }
