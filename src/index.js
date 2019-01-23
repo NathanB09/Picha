@@ -3,6 +3,8 @@ const titleInput = document.querySelector('#title')
 const urlInput = document.querySelector('#url')
 const cardHold = document.querySelector('.card-holder')
 const tagsContainer = document.querySelector('.tags-container')
+const searchForm = document.querySelector('#tag-search')
+const searchInput = document.querySelector('#search-item')
 
 const state = {
   pichas: []
@@ -90,3 +92,23 @@ function createTags(photo) {
     })
   })
 }
+
+// filters images by search input
+searchForm.addEventListener('submit', event => {
+  event.preventDefault()
+
+  const filtered = state.pichas.filter(photo => {
+    return !!photo.tags.find(tag => {
+      return tag.description.toLowerCase() === searchInput.value.toLowerCase()
+    })
+  })
+
+  if (filtered.length > 0) {
+    cardHold.innerHTML = ''
+    renderPhotos(filtered)
+  } else {
+    cardHold.innerText = "No Images Found"
+  }
+
+  searchForm.reset()
+})
