@@ -7,6 +7,7 @@ const searchForm = document.querySelector('#tag-search')
 const searchInput = document.querySelector('#search-item')
 const homeTab = document.querySelector('#home-tab')
 const tagTab = document.querySelector('#tag-tab')
+const close2 = document.querySelector('.close2')
 
 const state = {
   pichas: []
@@ -16,6 +17,7 @@ const state = {
 getPhotos().then(data => {
   state.pichas = data
   renderPhotos(state.pichas)
+  window.location.href = '#'
 })
 
 // renders a single photo
@@ -53,6 +55,7 @@ function renderTags(id) {
         event.preventDefault()
         cardHold.innerHTML = ''
         renderPhotos(filtered(tag.description))
+        window.location.href = '#'
       })
 
       tagBtn.append(tagSpan)
@@ -83,6 +86,7 @@ photoForm.addEventListener('submit', (event) => {
   savePicha(newPhoto).then(photo => {
     state.pichas.push(photo)
     createTags(photo)
+    window.location.href = '#'
     updatePage()
   })
 
