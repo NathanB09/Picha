@@ -19,7 +19,10 @@
       <li id='tag-tab'><a href="#"><i class="fa fa-tag"></i> Tags</a></li>
       <li id='search-container' class='form-input'>
         <form id="tag-search" class="">
-          <input id="search-item" type="text" name="search" placeholder="Search">
+          <input id="search-item" type="text" list="tags" name="search" placeholder="Search">
+          <datalist id="tags">
+
+          </datalist>
           <button style="float: right" type="submit"><i class="fa fa-search"></i></button>
         </form>
       </li>
@@ -41,9 +44,11 @@
 
     <div id='main-body'>
       <!-- <h1>Photo Library</h1> -->
-      <a href="#popup1">
-        <div class="logo"></div>
-      </a>
+      <div class="logo-anchor">
+        <a href="#popup1">
+          <div class="logo"></div>
+        </a>
+      </div>
       <div id="popup2" class="overlay">
         <div class="popup2">
           <a class="close2">&times;</a>
@@ -51,6 +56,7 @@
             <img class="window-photo">
             <div class="comment-window">
               <button class="close-comment-window">Back</button>
+              <h3>Comments</h3>
               <ul class="comment-list">
               </ul>
               <form id="comment-form" class='form-input'>
