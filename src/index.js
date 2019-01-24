@@ -13,18 +13,31 @@ const closeComments = document.querySelector('.close-comment-window')
 const commentUl = document.querySelector(".comment-list")
 const commentForm = document.querySelector('#comment-form')
 const commentInput = document.querySelector("#comment-content")
+const datalist = document.querySelector('#tags')
 
 const state = {
   pichas: [],
   currentPichaId: 0
 }
 
+const uniqTags = []
+
 // initial page load of pre-existing photos
 getPhotos().then(data => {
   state.pichas = data
   renderPhotos(state.pichas)
+  searchDatalist()
   window.location.href = '#'
 })
+
+function searchDatalist() {
+  toUniqTags()
+  uniqTags.forEach(tag => {
+    const option = document.createElement('option')
+    option.value = tag.description
+    datalist.append(option)
+  })
+}
 
 // renders a single photo
 function renderPhoto(photo) {
@@ -49,6 +62,7 @@ function renderPhoto(photo) {
 function renderComment(comment) {
   const commentLi = document.createElement('li')
   const commentP = document.createElement('p')
+  commentLi.className = 'comment-li'
   commentP.className = 'comment-p'
   commentP.innerText = comment.content
   commentLi.append(commentP)
@@ -137,6 +151,8 @@ function createTags(photo) {
 searchForm.addEventListener('submit', event => {
   event.preventDefault()
 
+
+
   if (filtered(searchInput.value).length > 0) {
     cardHold.innerHTML = ''
     renderPhotos(filtered(searchInput.value))
@@ -167,27 +183,50 @@ tagTab.addEventListener('click', event => {
 
   cardHold.innerHTML = ''
 
-  state.pichas.forEach(photo => {
-    photo.tags.forEach(tag => {
-      const tagBtn = document.createElement('button')
-      const tagSpan = document.createElement('span')
+  toUniqTags()
 
-      tagBtn.className = 'tag-button'
-      tagSpan.innerText = tag.description
+  uniqTags.sort((a, b) => {
+    if (a.description < b.description) {
+      return -1
+    }
+    if (a.description > b.description) {
+      return 1
+    }
+    return 0
+  })
 
-      // renders the images for the clicked tag
-      tagBtn.addEventListener('click', event => {
-        event.preventDefault()
-        cardHold.innerHTML = ''
-        renderPhotos(filtered(tag.description))
-      })
+  uniqTags.forEach(tag => {
+    const tagBtn = document.createElement('button')
 
-      tagBtn.append(tagSpan)
-      cardHold.append(tagBtn)
+    tagBtn.className = 'tag-button'
+    tagBtn.innerText = tag.description
+
+    // renders the images for the clicked tag
+    tagBtn.addEventListener('click', event => {
+      event.preventDefault()
+      cardHold.innerHTML = ''
+      renderPhotos(filtered(tag.description))
     })
+
+    cardHold.append(tagBtn)
   })
 
 })
+
+function toUniqTags() {
+  const temp = []
+  uniqTags.length = 0
+  state.pichas.forEach(photo => {
+    photo.tags.forEach(tag => {
+
+      if (!temp.includes(tag.description)) {
+        temp.push(tag.description)
+        uniqTags.push(tag)
+      }
+
+    })
+  })
+}
 
 commentForm.addEventListener('submit', event => {
   event.preventDefault()
