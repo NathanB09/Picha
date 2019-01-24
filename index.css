@@ -73,7 +73,7 @@ h3 {
   opacity: 0;
 }
 
-.overlay:target {
+.overlay.visible {
   visibility: visible;
   opacity: 1;
 }
@@ -113,16 +113,12 @@ h3 {
   margin: 20px 10px;
   overflow: hidden;
   position: relative;
-  /* height: 500px; */
   max-height: 70vh;
 }
 
 .window-photo {
   width: 100%;
   position: relative;
-  /* top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%); */
   border-radius: 5px;
 }
 

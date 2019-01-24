@@ -14,6 +14,7 @@ const commentUl = document.querySelector(".comment-list")
 const commentForm = document.querySelector('#comment-form')
 const commentInput = document.querySelector("#comment-content")
 const datalist = document.querySelector('#tags')
+const popup2 = document.querySelector('#popup2')
 
 const state = {
   pichas: [],
@@ -46,12 +47,12 @@ function renderPhoto(photo) {
 
   imgTag.src = photo.url
   imgTag.className = 'photo-card'
-  aTag.href = '#popup2'
 
   aTag.append(imgTag)
   cardHold.append(aTag)
 
   aTag.addEventListener('click', () => {
+    popup2.classList.toggle("visible")
     state.currentPichaId = photo.id
     windowPic.src = photo.url
     tagsContainer.innerHTML = ''
@@ -243,5 +244,5 @@ close2.addEventListener('click', () => {
   if (windowPic.parentNode.querySelector('.comment-window').classList.value.includes('visible')) {
     toggleComments()
   }
-  window.location.href = '#'
+  popup2.classList.toggle("visible")
 })
