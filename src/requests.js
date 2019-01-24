@@ -80,3 +80,9 @@ function getPhotoById(id) {
   return fetch(baseURL + `/pichas/${id}`)
     .then(res => res.json())
 }
+
+function deletePhoto(id) {
+  return fetch(baseURL + `/pichas/${id}`, {
+    method: 'DELETE'
+  });
+}

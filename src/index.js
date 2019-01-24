@@ -10,20 +10,20 @@ const tagTab = document.querySelector('#tag-tab')
 const close2 = document.querySelector('.close2')
 const windowPic = document.querySelector('.window-photo')
 const closeComments = document.querySelector('.close-comment-window')
-const commentUl = document.querySelector(".comment-list")
+const commentUl = document.querySelector('.comment-list')
 const commentForm = document.querySelector('#comment-form')
-const commentInput = document.querySelector("#comment-content")
+const commentInput = document.querySelector('#comment-content')
 const datalist = document.querySelector('#tags')
 const popup2 = document.querySelector('#popup2')
 const logo = document.querySelector('.logo-anchor')
 const popup1 = document.querySelector('#popup1')
 const close1 = document.querySelector('.close')
+const deleteBtn = document.querySelector('.delete-image')
 
 const state = {
   pichas: [],
   currentPichaId: 0
 }
-
 const uniqTags = []
 
 // initial page load of pre-existing photos
@@ -55,7 +55,7 @@ function renderPhoto(photo) {
   cardHold.append(aTag)
 
   aTag.addEventListener('click', () => {
-    popup2.classList.toggle("visible")
+    popup2.classList.toggle('visible')
     state.currentPichaId = photo.id
     windowPic.src = photo.url
     tagsContainer.innerHTML = ''
@@ -100,7 +100,7 @@ function renderTags(id) {
         event.preventDefault()
         cardHold.innerHTML = ''
         renderPhotos(filtered(tag.description))
-        window.location.href = '#'
+        popup2.classList.toggle('visible')
       })
 
       tagBtn.append(tagSpan)
@@ -131,11 +131,11 @@ photoForm.addEventListener('submit', (event) => {
   savePicha(newPhoto).then(photo => {
     state.pichas.push(photo)
     createTags(photo)
-    window.location.href = '#'
     updatePage()
   })
 
   photoForm.reset()
+  popup1.classList.toggle('visible')
 })
 
 // creates 5 tags to photo passed in
@@ -257,3 +257,10 @@ logo.addEventListener('click', () => {
 close1.addEventListener('click', () => {
   popup1.classList.toggle('visible')
 })
+
+deleteBtn.addEventListener('click', (event) => {
+  event.preventDefault()
+  confirm('Are you sure you want to delete this Picha?')
+  deletePhoto(state.currentPichaId);
+  updatePage()
+});
