@@ -15,6 +15,9 @@ const commentForm = document.querySelector('#comment-form')
 const commentInput = document.querySelector("#comment-content")
 const datalist = document.querySelector('#tags')
 const popup2 = document.querySelector('#popup2')
+const logo = document.querySelector('.logo-anchor')
+const popup1 = document.querySelector('#popup1')
+const close1 = document.querySelector('.close')
 
 const state = {
   pichas: [],
@@ -244,5 +247,13 @@ close2.addEventListener('click', () => {
   if (windowPic.parentNode.querySelector('.comment-window').classList.value.includes('visible')) {
     toggleComments()
   }
-  popup2.classList.toggle("visible")
+  popup2.classList.toggle('visible')
+})
+
+logo.addEventListener('click', () => {
+  popup1.classList.toggle('visible')
+})
+
+close1.addEventListener('click', () => {
+  popup1.classList.toggle('visible')
 })
