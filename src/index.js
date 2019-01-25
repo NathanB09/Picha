@@ -75,7 +75,6 @@ function renderComment(comment) {
 
 function toggleComments() {
   windowPic.parentNode.querySelector('.comment-window').classList.toggle("visible")
-  console.log(state.currentPichaId)
   commentUl.innerHTML = ""
   getPhotoById(state.currentPichaId).then(json => {
     json.comments.forEach(comment => renderComment(comment))
@@ -244,9 +243,7 @@ commentForm.addEventListener('submit', event => {
 })
 
 close2.addEventListener('click', () => {
-  if (windowPic.parentNode.querySelector('.comment-window').classList.value.includes('visible')) {
-    toggleComments()
-  }
+  hideComments()
   popup2.classList.toggle('visible')
 })
 
@@ -259,16 +256,33 @@ close1.addEventListener('click', () => {
 })
 
 deleteBtn.addEventListener('click', (event) => {
-  event.preventDefault();
+  event.preventDefault()
   removePhoto(state.currentPichaId)
 });
 
+document.querySelector('.popup2').addEventListener('click', event => {
+  event.stopPropagation()
+})
+
+window.addEventListener('keyup', event => {
+  if (event.which === 27 && popup2.classList.contains('visible')) {
+    hideComments()
+    popup2.classList.toggle('visible')
+  }
+})
+
+popup2.addEventListener('click', (event) => {
+  hideComments()
+  popup2.classList.toggle('visible')
+})
+
 function removePhoto(id) {
   if (confirm('Are you sure you want to delete this Picha?')) {
-    deletePhoto(id);
-    deletePhotoFromState(id);
-    updatePage();
-    popup2.classList.toggle('visible');
+    deletePhoto(id)
+    deletePhotoFromState(id)
+    hideComments()
+    updatePage()
+    popup2.classList.toggle('visible')
   };
 };
 
@@ -276,4 +290,10 @@ function deletePhotoFromState(id) {
   const toDelete = state.pichas.find(picha => picha.id === id)
   const deleteIndex = state.pichas.indexOf(toDelete)
   state.pichas.splice(deleteIndex, 1)
+}
+
+function hideComments() {
+  if (windowPic.parentNode.querySelector('.comment-window').classList.value.includes('visible')) {
+    toggleComments()
+  }
 }
