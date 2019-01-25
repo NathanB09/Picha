@@ -259,8 +259,21 @@ close1.addEventListener('click', () => {
 })
 
 deleteBtn.addEventListener('click', (event) => {
-  event.preventDefault()
-  confirm('Are you sure you want to delete this Picha?')
-  deletePhoto(state.currentPichaId);
-  updatePage()
+  event.preventDefault();
+  removePhoto(state.currentPichaId)
 });
+
+function removePhoto(id) {
+  if (confirm('Are you sure you want to delete this Picha?')) {
+    deletePhoto(id);
+    deletePhotoFromState(id);
+    updatePage();
+    popup2.classList.toggle('visible');
+  };
+};
+
+function deletePhotoFromState(id) {
+  const toDelete = state.pichas.find(picha => picha.id === id)
+  const deleteIndex = state.pichas.indexOf(toDelete)
+  state.pichas.splice(deleteIndex, 1)
+}
