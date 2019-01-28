@@ -1,4 +1,4 @@
 # Picha
 Image tagging using google vision AI
 
-Hey
+Picha backend API - https://github.com/NathanB09/Picha-Backend
