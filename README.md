@@ -21,3 +21,8 @@ Picha backend API - https://github.com/NathanB09/Picha-Backend
 3. Add a like feature
 4. Upload image feature instead of using a URL
 
+
+### Contributors
+
+- Nathan Bell - https://github.com/NathanB09
+- Serena Nakatani-Brown - https://github.com/snb1808
